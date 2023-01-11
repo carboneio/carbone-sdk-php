@@ -1,8 +1,8 @@
 {
-    "name": "carboneio/carbone-carbone-sdk-php-php",
+    "name": "carboneio/carbone-sdk-php",
     "description": "Official Carboneio PHP SDK to generate document through the Carbone CLOUD API.",
     "type": "library",
-    "homepage": "https://github.com/carboneio/carbone-carbone-sdk-php-php",
+    "homepage": "https://github.com/carboneio/carbone-sdk-php",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -12,7 +12,7 @@
     },
     "authors": [
         {
-            "name": "Steeve Payraudeau",
+            "name": "steevepay",
             "email": "16964532+steevepay@users.noreply.github.com"
         }
     ],

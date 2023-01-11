@@ -2,14 +2,19 @@
 
 namespace Carboneio\CarboneSdk;
 
-use Carboneio\CarboneSdk\Responses\CarboneSdkResponse;
+/** Saloon Class */
 use Sammyjo20\Saloon\Http\SaloonConnector;
 use Sammyjo20\Saloon\Traits\Plugins\AcceptsJson;
-use Carboneio\CarboneSdk\Requests\ExampleRequestCollection;
+use Sammyjo20\Saloon\Http\Auth\TokenAuthenticator;
+use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;
 
-/**
- * @method ExampleRequestCollection example
- */
+/** Carboneio SDK Class */
+use Carboneio\CarboneSdk\Responses\CarboneSdkResponse;
+
+/** Carbone SDK Collections */
+use Carboneio\CarboneSdk\RequestsCollection\RendersCollection;
+use Carboneio\CarboneSdk\RequestsCollection\TemplatesCollection;
+
 class CarboneSdk extends SaloonConnector
 {
     use AcceptsJson;
@@ -19,7 +24,7 @@ class CarboneSdk extends SaloonConnector
      *
      * @var string
      */
-    protected string $apiBaseUrl = ':base_url';
+    protected string $apiBaseUrl = 'https://api.carbone.io/';
 
     /**
      * Custom response that all requests will return.
@@ -34,7 +39,8 @@ class CarboneSdk extends SaloonConnector
      * @var array
      */
     protected array $requests = [
-        'example' => ExampleRequestCollection::class,
+        'templates' => TemplatesCollection::class,
+        'renders' => RendersCollection::class,
     ];
 
     /**
@@ -50,11 +56,16 @@ class CarboneSdk extends SaloonConnector
     /**
      * @param string|null $baseUrl
      */
-    public function __construct(string $baseUrl = null)
+    public function __construct(private string $token, string $baseUrl = null)
     {
         if (isset($baseUrl)) {
             $this->apiBaseUrl = $baseUrl;
         }
+    }
+
+    public function defaultAuth(): ?AuthenticatorInterface
+    {
+        return new TokenAuthenticator($this->token);
     }
 
     /**
@@ -64,8 +75,13 @@ class CarboneSdk extends SaloonConnector
      */
     public function defaultHeaders(): array
     {
-        return [];
+        return [
+            'carbone-version' => '4',
+            'Content-Type' => 'application/json',
+        ];
     }
+
+
 
     /**
      * Define any default config.
@@ -74,6 +90,13 @@ class CarboneSdk extends SaloonConnector
      */
     public function defaultConfig(): array
     {
-        return [];
+        return [
+            'timeout' => 30
+        ];
+    }
+
+    public function getToken(): string
+    {
+        return $this->token;
     }
 }
