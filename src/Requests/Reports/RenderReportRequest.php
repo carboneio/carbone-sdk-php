@@ -4,11 +4,10 @@ namespace Carboneio\CarboneSdk\Requests\Reports;
 
 /** Saloon */
 use Sammyjo20\Saloon\Constants\Saloon;
-use Sammyjo20\Saloon\Clients\MockClient;
 use Sammyjo20\Saloon\Traits\Plugins\HasJsonBody;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 
-class RenderReport extends SaloonRequest
+class RenderReportRequest extends SaloonRequest
 {
     use HasJsonBody;
 

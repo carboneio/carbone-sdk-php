@@ -7,7 +7,7 @@ use Sammyjo20\Saloon\Constants\Saloon;
 use Sammyjo20\Saloon\Traits\Plugins\HasJsonBody;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 
-class DeleteTemplate extends SaloonRequest
+class DeleteTemplateRequest extends SaloonRequest
 {
     use HasJsonBody;
 
