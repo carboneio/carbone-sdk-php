@@ -1,18 +1,18 @@
 <?php
 
-namespace Carboneio\CarboneSdk\RequestsCollection;
+namespace Carboneio\SDK\RequestsCollection;
 
 /** Saloon Abstracts */
 use Sammyjo20\Saloon\Http\RequestCollection;
 
 /** Requests */
-use Carboneio\CarboneSdk\Requests\Templates\DeleteTemplateRequest;
-use Carboneio\CarboneSdk\Requests\Templates\DownloadTemplateRequest;
-use Carboneio\CarboneSdk\Requests\Templates\UploadTemplateRequest;
+use Carboneio\SDK\Requests\Templates\DeleteTemplateRequest;
+use Carboneio\SDK\Requests\Templates\DownloadTemplateRequest;
+use Carboneio\SDK\Requests\Templates\UploadTemplateRequest;
 
 /** Responses */
-use Carboneio\CarboneSdk\Responses\CarboneSdkResponse;
-use Carboneio\CarboneSdk\Responses\UploadTemplateResponse;
+use Carboneio\SDK\Responses\CarboneSdkResponse;
+use Carboneio\SDK\Responses\UploadTemplateResponse;
 
 class TemplatesCollection extends RequestCollection
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Carboneio\CarboneSdk\Requests\Templates;
+namespace Carboneio\SDK\Requests\Templates;
 
 /** Saloon Class */
 use Sammyjo20\Saloon\Constants\Saloon;

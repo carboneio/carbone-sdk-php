@@ -6,14 +6,14 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Carboneio\\CarboneSdk\\": "src/",
-            "Carboneio\\CarboneSdk\\Tests\\": "tests/"
+            "Carboneio\\SDK\\": "src/",
+            "Carboneio\\SDK\\Tests\\": "tests/"
         }
     },
     "authors": [
         {
             "name": "steevepay",
-            "email": "16964532+steevepay@users.noreply.github.com"
+            "email": "contact@carbone.io"
         }
     ],
     "minimum-stability": "stable",

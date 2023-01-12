@@ -1,6 +1,6 @@
 <?php
 
-namespace Carboneio\CarboneSdk\Requests\Reports;
+namespace Carboneio\SDK\Requests\Reports;
 
 /** Saloon Class */
 use Sammyjo20\Saloon\Constants\Saloon;

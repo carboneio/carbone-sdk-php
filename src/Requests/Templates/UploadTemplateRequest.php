@@ -1,6 +1,6 @@
 <?php
 
-namespace Carboneio\CarboneSdk\Requests\Templates;
+namespace Carboneio\SDK\Requests\Templates;
 
 /** Saloon Class */
 use Sammyjo20\Saloon\Constants\Saloon;
@@ -8,7 +8,7 @@ use Sammyjo20\Saloon\Traits\Plugins\HasJsonBody;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 
 /** Carbone SDK Class */
-use Carboneio\CarboneSdk\Responses\UploadTemplateResponse;
+use Carboneio\SDK\Responses\UploadTemplateResponse;
 
 class UploadTemplateRequest extends SaloonRequest
 {

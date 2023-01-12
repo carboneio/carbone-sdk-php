@@ -1,9 +1,12 @@
 <?php
 
-namespace Carboneio\CarboneSdk\Responses;
+namespace Carboneio\SDK\Responses;
 
+/** Saloon Class */
 use Sammyjo20\Saloon\Http\SaloonResponse;
-use Carboneio\CarboneSdk\Exceptions\CarboneSdkRequestException;
+
+/** Carbone Class */
+use Carboneio\SDK\Exceptions\CarboneSdkRequestException;
 
 class CarboneSdkResponse extends SaloonResponse
 {

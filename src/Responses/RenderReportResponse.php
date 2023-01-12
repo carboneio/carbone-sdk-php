@@ -1,6 +1,6 @@
 <?php
 
-namespace Carboneio\CarboneSdk\Responses;
+namespace Carboneio\SDK\Responses;
 
 class RenderReportResponse extends CarboneSdkResponse
 {

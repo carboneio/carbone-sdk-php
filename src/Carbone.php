@@ -1,6 +1,13 @@
 <?php
 
-namespace Carboneio\CarboneSdk;
+namespace Carboneio\SDK;
+
+/** Carboneio SDK Class */
+use Carboneio\SDK\Responses\CarboneSdkResponse;
+
+/** Carbone SDK Collections */
+use Carboneio\SDK\RequestsCollection\RendersCollection;
+use Carboneio\SDK\RequestsCollection\TemplatesCollection;
 
 /** Saloon Class */
 use Sammyjo20\Saloon\Http\SaloonConnector;
@@ -8,14 +15,7 @@ use Sammyjo20\Saloon\Traits\Plugins\AcceptsJson;
 use Sammyjo20\Saloon\Http\Auth\TokenAuthenticator;
 use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;
 
-/** Carboneio SDK Class */
-use Carboneio\CarboneSdk\Responses\CarboneSdkResponse;
-
-/** Carbone SDK Collections */
-use Carboneio\CarboneSdk\RequestsCollection\RendersCollection;
-use Carboneio\CarboneSdk\RequestsCollection\TemplatesCollection;
-
-class CarboneSdk extends SaloonConnector
+class Carbone extends SaloonConnector
 {
     use AcceptsJson;
 
