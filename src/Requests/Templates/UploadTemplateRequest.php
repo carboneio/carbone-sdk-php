@@ -19,7 +19,7 @@ class UploadTemplateRequest extends SaloonRequest
     protected ?string $response = UploadTemplateResponse::class;
 
     public function __construct(
-        private string $content
+        private string $templateAsBase64
     ) {
     }
 
@@ -31,7 +31,7 @@ class UploadTemplateRequest extends SaloonRequest
     public function defaultData(): array
     {
         return [
-            'template' => $this->content,
+            'template' => $this->templateAsBase64,
         ];
     }
 }
