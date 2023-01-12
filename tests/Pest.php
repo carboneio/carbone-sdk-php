@@ -9,7 +9,7 @@ function getTemplateAsBase64(): string
     return base64_encode(file_get_contents(__DIR__ . '/Assets/template.odt'));
 }
 
-function getResultAsPdf(): string
+function getResult(): string
 {
-    return base64_encode(file_get_contents(__DIR__ . '/Assets/result.pdf'));
+    return file_get_contents(__DIR__ . '/Assets/result.pdf');
 }
