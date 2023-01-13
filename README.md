@@ -38,6 +38,8 @@ $response = $carbone->templates()->upload($contentBase64);
 $templateId = $response->getTemplateId();
 ```
 
+[Example to upload a template](./examples/upload_template.php)
+
 ### Render a template
 
 You can generate a document using the `render` method. This method takes the `template Id` and the data as parameters. A `render ID` is returned and must be used to [download the generated document](#download-a-rendered-template).
@@ -47,6 +49,7 @@ $response = $carbone->renders()->render($templateId, $data);
 
 $renderId = $response->getRenderId();
 ```
+[Example to render a template](./examples/upload_template.php)
 
 ### Download a rendered template
 
