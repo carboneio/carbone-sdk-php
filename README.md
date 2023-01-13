@@ -38,7 +38,7 @@ $response = $carbone->templates()->upload($contentBase64);
 $templateId = $response->getTemplateId();
 ```
 
-[Example to upload a template](./examples/upload_template.php)
+Example to [upload a template](./examples/upload_template.php)
 
 ### Render a template
 
@@ -49,7 +49,7 @@ $response = $carbone->renders()->render($templateId, $data);
 
 $renderId = $response->getRenderId();
 ```
-[Example to render a template](./examples/upload_template.php)
+Example to [render a template](./examples/render_report.php)
 
 ### Download a rendered template
 
@@ -61,6 +61,7 @@ $response = $carbone->renders()->download($renderId);
 // Save the contents of the file yourself on your filesystem
 $content = $response->getContent();
 ```
+Example to [download a rendered document](./examples/download_report.php)
 
 ### Delete a template
 
@@ -70,6 +71,8 @@ You can delete a template using the `delete` method. This method takes the `temp
 $response = $carbone->templates()->delete($templateId);
 ```
 
+Example to [delete a template](./examples/delete_template.php)
+
 ### Download a template
 
 You can download a template using the `download` method. This method takes the `template Id` as a parameter.
@@ -77,6 +80,7 @@ You can download a template using the `download` method. This method takes the `
 ```php
 $response = $carbone->templates()->download($templateId);
 ```
+Example to [download a template](./examples/download_template.php)
 
 ### Add custom headers
 
