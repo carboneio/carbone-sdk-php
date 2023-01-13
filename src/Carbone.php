@@ -8,11 +8,13 @@ use Carboneio\SDK\Responses\CarboneSdkResponse;
 /** Carbone SDK Collections */
 use Carboneio\SDK\RequestsCollection\RendersCollection;
 use Carboneio\SDK\RequestsCollection\TemplatesCollection;
+use Carboneio\SDK\Requests\StatusRequest;
 
 /** Saloon Class */
 use Sammyjo20\Saloon\Http\SaloonConnector;
 use Sammyjo20\Saloon\Traits\Plugins\AcceptsJson;
 use Sammyjo20\Saloon\Http\Auth\TokenAuthenticator;
+use Sammyjo20\Saloon\Http\SaloonResponse;
 use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;
 
 class Carbone extends SaloonConnector
@@ -40,7 +42,7 @@ class Carbone extends SaloonConnector
      */
     protected array $requests = [
         'templates' => TemplatesCollection::class,
-        'renders' => RendersCollection::class,
+        'renders' => RendersCollection::class
     ];
 
     /**
@@ -98,5 +100,10 @@ class Carbone extends SaloonConnector
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function getStatus(): SaloonResponse
+    {
+        return $this->request(new StatusRequest())->send();
     }
 }
