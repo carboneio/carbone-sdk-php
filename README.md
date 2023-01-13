@@ -48,7 +48,7 @@ $response = $carbone->renders()->render($templateId, $data);
 $renderId = $response->getRenderId();
 ```
 
-## Download a rendered template
+### Download a rendered template
 
 You can download a rendered template using the `download` method. This method takes the `render ID` as a parameter.
 
@@ -73,6 +73,18 @@ You can download a template using the `download` method. This method takes the `
 
 ```php
 $response = $carbone->templates()->download($templateId);
+```
+
+## 🧪 Run tests
+
+First install required composer packages:
+```bash
+composer install
+```
+
+Then execute tests:
+```bash
+composer test
 ```
 
 ## 👤 History
