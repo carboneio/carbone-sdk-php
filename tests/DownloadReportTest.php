@@ -28,6 +28,9 @@ it('should download a report', function () {
 
     expect($response->body())->toBe($resultContent);
     expect($response->status())->toBe(200);
+
+    $mockClient->assertSent('/render/*');
+    $mockClient->assertSent(DownloadReportRequest::class);
 });
 
 it('should return an error if the render does not exist', function () {
@@ -50,4 +53,7 @@ it('should return an error if the render does not exist', function () {
 
     $this->assertEquals($json, $expectedResponse);
     expect($response->status())->toBe(404);
+
+    $mockClient->assertSent('/render/*');
+    $mockClient->assertSent(DownloadReportRequest::class);
 });

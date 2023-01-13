@@ -34,6 +34,9 @@ it('should delete a template', function () {
     expect($response->status())->toBe(200);
     expect(isset($json["error"]))->toBe(false);
     expect(isset($json["code"]))->toBe(false);
+
+    $mockClient->assertSent('/template/*');
+    $mockClient->assertSent(DeleteTemplateRequest::class);
 });
 
 it('should return an error if the template does not exist anymore', function () {
@@ -56,4 +59,7 @@ it('should return an error if the template does not exist anymore', function () 
 
     $this->assertEquals($json, $expectedResponse);
     expect($response->status())->toBe(400);
+
+    $mockClient->assertSent('/template/*');
+    $mockClient->assertSent(DeleteTemplateRequest::class);
 });

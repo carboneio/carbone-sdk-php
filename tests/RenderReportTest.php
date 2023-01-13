@@ -41,6 +41,8 @@ it('Should render a report from a template ID and should return a render ID', fu
     $this->assertEquals($json, $expectedResponse);
     expect($response->status())->toBe(200);
 
+    $mockClient->assertSent('/render/*');
+    $mockClient->assertSent(RenderReportRequest::class);
 });
 
 it('Should return an error 404 if the template if not found', function () {
@@ -71,6 +73,8 @@ it('Should return an error 404 if the template if not found', function () {
     $this->assertEquals($json, $expectedResponse);
     expect($response->status())->toBe(404);
 
+    $mockClient->assertSent('/render/*');
+    $mockClient->assertSent(RenderReportRequest::class);
 });
 
 
@@ -101,5 +105,8 @@ it('Should return an error if the template design is not correct', function () {
 
     $this->assertEquals($json, $expectedResponse);
     expect($response->status())->toBe(404);
+
+    $mockClient->assertSent('/render/*');
+    $mockClient->assertSent(RenderReportRequest::class);
 });
 

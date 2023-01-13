@@ -39,6 +39,9 @@ it('should upload a template and return a template ID', function () {
 
     expect(isset($json["error"]))->toBe(false);
     expect(isset($json["code"]))->toBe(false);
+
+    $mockClient->assertSent('/template');
+    $mockClient->assertSent(UploadTemplateRequest::class);
 });
 
 it('should return an error if the template format is not supported', function () {
@@ -63,4 +66,6 @@ it('should return an error if the template format is not supported', function ()
     $this->assertEquals($json, $expectedResponse);
     expect($response->getTemplateId())->toBe(null);
 
+    $mockClient->assertSent('/template');
+    $mockClient->assertSent(UploadTemplateRequest::class);
 });

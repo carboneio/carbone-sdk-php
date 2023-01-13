@@ -28,6 +28,9 @@ it('should download a template', function () {
 
     expect($response->body())->toBe($templateContent);
     expect($response->status())->toBe(200);
+
+    $mockClient->assertSent('/template/*');
+    $mockClient->assertSent(DownloadTemplateRequest::class);
 });
 
 it('should return an error if the template does not exist', function () {
@@ -50,4 +53,7 @@ it('should return an error if the template does not exist', function () {
 
     $this->assertEquals($json, $expectedResponse);
     expect($response->status())->toBe(400);
+
+    $mockClient->assertSent('/template/*');
+    $mockClient->assertSent(DownloadTemplateRequest::class);
 });
