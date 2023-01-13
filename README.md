@@ -13,7 +13,7 @@ Carbone is a powerful and easy to use API to generate documents from a template 
 You can install the bindings via [Composer](http://getcomposer.org/). Run the following command:
 
 ```bash
-composer require carboneio/carbone-sdk
+composer require carboneio/carbone-sdk-php
 ```
 
 ## Usage

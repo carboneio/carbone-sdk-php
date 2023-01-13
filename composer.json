@@ -1,5 +1,5 @@
 {
-    "name": "carboneio/carbone-sdk",
+    "name": "carboneio/carbone-sdk-php",
     "description": "Official Carboneio PHP SDK to generate documents through the Carbone CLOUD API.",
     "type": "library",
     "homepage": "https://github.com/carboneio/carbone-sdk-php",
