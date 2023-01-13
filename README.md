@@ -87,6 +87,18 @@ $carbone->setHeaders([
 ]);
 ```
 
+### Get API Status
+
+```php
+$response = $carbone->getStatus();
+$json = $response->json();
+
+echo "Status : " . $response->status() . "\n";
+echo "Success: " . $json['success'] . "\n";
+echo "Version: " . $json['version'] . "\n";
+echo "Message: " . $json['message'] . "\n";
+```
+
 ## 🧪 Run tests
 
 First install required composer packages:
