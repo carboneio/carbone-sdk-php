@@ -1,3 +1,7 @@
+### v1.0.1
+  - Release February 16th, 2023
+  - Remove unused dep "spatie/data-transfer-object" & "spatie/ray"
+
 ### v1.0.0
   - Release January 13th, 2023
   - All Carbone Cloud API endpoints are supported and tested:
