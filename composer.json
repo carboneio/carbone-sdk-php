@@ -19,7 +19,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.1",
-        "sammyjo20/saloon": "^1.6"
+        "saloonphp/saloon": "^1.6"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.5",
