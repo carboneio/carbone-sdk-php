@@ -25,7 +25,7 @@ Using the SDK is very easy. You just need to create a new instance of the Carbon
 ```php
 use Carboneio\SDK\Carbone;
 
-$carbone = new Carbone('YOUR_API_KEY');
+$carbone = new Carbone('YOUR_API_KEY', 'https://api.carbone.io/');
 ```
 
 ### Upload a template
