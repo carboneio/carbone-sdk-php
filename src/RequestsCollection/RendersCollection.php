@@ -2,9 +2,6 @@
 
 namespace Carboneio\SDK\RequestsCollection;
 
-/** Saloon Abstracts */
-use Sammyjo20\Saloon\Http\RequestCollection;
-
 /** Requests */
 use Carboneio\SDK\Requests\Reports\RenderReportRequest;
 use Carboneio\SDK\Requests\Reports\DownloadReportRequest;
@@ -13,20 +10,26 @@ use Carboneio\SDK\Requests\Reports\DownloadReportRequest;
 use Carboneio\SDK\Responses\CarboneSdkResponse;
 use Carboneio\SDK\Responses\RenderReportResponse;
 
-class RendersCollection extends RequestCollection
+use Saloon\Repositories\RequestCollection;
+use Saloon\Http\Connector;
+
+class RendersCollection
 {
+    protected Connector $connector;
+
+    public function __construct(Connector $connector)
+    {
+        $this->connector = $connector;
+    }
+
     public function render(string $templateId, array $data): RenderReportResponse
     {
-        return (new RenderReportRequest($templateId, $data))
-            ->setConnector($this->connector)
-            ->send();
+        return $this->connector->send(new RenderReportRequest($templateId, $data));
     }
 
     public function download(string $renderId): CarboneSdkResponse
     {
-        return (new DownloadReportRequest($renderId))
-            ->setConnector($this->connector)
-            ->send();
+        return $this->connector->send(new DownloadReportRequest($renderId));
     }
 }
 

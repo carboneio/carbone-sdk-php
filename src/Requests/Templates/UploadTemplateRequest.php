@@ -3,18 +3,20 @@
 namespace Carboneio\SDK\Requests\Templates;
 
 /** Saloon Class */
-use Sammyjo20\Saloon\Constants\Saloon;
-use Sammyjo20\Saloon\Traits\Plugins\HasJsonBody;
-use Sammyjo20\Saloon\Http\SaloonRequest;
+use Saloon\Constants\Saloon;
+use Saloon\Contracts\Body\HasBody;
+use Saloon\Traits\Body\HasJsonBody;
+use Saloon\Http\Request;
+use Saloon\Enums\Method;
 
 /** Carbone SDK Class */
 use Carboneio\SDK\Responses\UploadTemplateResponse;
 
-class UploadTemplateRequest extends SaloonRequest
+class UploadTemplateRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
-    protected ?string $method = Saloon::POST;
+    protected Method $method = Method::POST;
 
     protected ?string $response = UploadTemplateResponse::class;
 
@@ -23,12 +25,12 @@ class UploadTemplateRequest extends SaloonRequest
     ) {
     }
 
-    public function defineEndpoint(): string
+    public function resolveEndpoint(): string
     {
         return '/template';
     }
 
-    public function defaultData(): array
+    public function defaultBody(): array
     {
         return [
             'template' => $this->templateAsBase64,

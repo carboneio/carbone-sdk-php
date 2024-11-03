@@ -3,22 +3,24 @@
 namespace Carboneio\SDK\Requests\Templates;
 
 /** Saloon Class */
-use Sammyjo20\Saloon\Constants\Saloon;
-use Sammyjo20\Saloon\Traits\Plugins\HasJsonBody;
-use Sammyjo20\Saloon\Http\SaloonRequest;
+use Saloon\Constants\Saloon;
+use Saloon\Contracts\Body\HasBody;
+use Saloon\Traits\Body\HasJsonBody;
+use Saloon\Http\Request;
+use Saloon\Enums\Method;
 
-class DeleteTemplateRequest extends SaloonRequest
+class DeleteTemplateRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
-    protected ?string $method = Saloon::DELETE;
+    protected Method $method = Method::DELETE;
 
     public function __construct(
         private string $templateId
     ) {
     }
 
-    public function defineEndpoint(): string
+    public function resolveEndpoint(): string
     {
         return '/template/' . $this->templateId;
     }

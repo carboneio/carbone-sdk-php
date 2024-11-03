@@ -2,17 +2,17 @@
 
 namespace Carboneio\SDK\Exceptions;
 
-use Sammyjo20\Saloon\Http\SaloonResponse;
-use Sammyjo20\Saloon\Exceptions\SaloonRequestException;
+use Saloon\Http\Response;
+use Saloon\Exceptions\Request\RequestException;
 
-class CarboneSdkRequestException extends SaloonRequestException
+class CarboneSdkRequestException extends RequestException
 {
     /**
      * Retrieve the response.
      *
      * @return SaloonResponse
      */
-    public function getResponse(): SaloonResponse
+    public function getResponse(): Response
     {
         return $this->getSaloonResponse();
     }

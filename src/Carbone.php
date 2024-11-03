@@ -11,13 +11,13 @@ use Carboneio\SDK\RequestsCollection\TemplatesCollection;
 use Carboneio\SDK\Requests\StatusRequest;
 
 /** Saloon Class */
-use Sammyjo20\Saloon\Http\SaloonConnector;
-use Sammyjo20\Saloon\Traits\Plugins\AcceptsJson;
-use Sammyjo20\Saloon\Http\Auth\TokenAuthenticator;
-use Sammyjo20\Saloon\Http\SaloonResponse;
-use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;
+use Saloon\Http\Connector;
+use Saloon\Traits\Plugins\AcceptsJson;
+use Saloon\Http\Auth\TokenAuthenticator;
+use Saloon\Http\Response;
+use Saloon\Contracts\Authenticator;
 
-class Carbone extends SaloonConnector
+class Carbone extends Connector
 {
     use AcceptsJson;
 
@@ -50,7 +50,7 @@ class Carbone extends SaloonConnector
      *
      * @return string
      */
-    public function defineBaseUrl(): string
+    public function resolveBaseUrl(): string
     {
         return $this->apiBaseUrl;
     }
@@ -65,7 +65,7 @@ class Carbone extends SaloonConnector
         }
     }
 
-    public function defaultAuth(): ?AuthenticatorInterface
+    public function defaultAuth(): ?Authenticator
     {
         return new TokenAuthenticator($this->token);
     }
@@ -83,8 +83,6 @@ class Carbone extends SaloonConnector
         ];
     }
 
-
-
     /**
      * Define any default config.
      *
@@ -97,13 +95,23 @@ class Carbone extends SaloonConnector
         ];
     }
 
+    public function templates(): TemplatesCollection
+    {
+        return new TemplatesCollection($this);
+    }
+
+    public function renders(): RendersCollection
+    {
+        return new RendersCollection($this);
+    }
+
     public function getToken(): string
     {
         return $this->token;
     }
 
-    public function getStatus(): SaloonResponse
+    public function getStatus(): Response
     {
-        return $this->request(new StatusRequest())->send();
+        return $this->send(new StatusRequest());
     }
 }
