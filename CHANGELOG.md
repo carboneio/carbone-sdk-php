@@ -1,3 +1,7 @@
+### v2.0.0
+  - Release November 4th, 2024
+  - Update all dependencies + PHP >= v8.2
+
 ### v1.0.1
   - Release February 16th, 2023
   - Remove unused dep "spatie/data-transfer-object" & "spatie/ray"

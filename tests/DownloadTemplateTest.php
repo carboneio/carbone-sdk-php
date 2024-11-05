@@ -2,8 +2,8 @@
 
 
 /** Saloon Class */
-use Sammyjo20\Saloon\Clients\MockClient;
-use Sammyjo20\Saloon\Http\MockResponse;
+use Saloon\Http\Faking\MockClient;
+use Saloon\Http\Faking\MockResponse;
 
 use Carboneio\SDK\Carbone;
 use Carboneio\SDK\Requests\Templates\DownloadTemplateRequest;

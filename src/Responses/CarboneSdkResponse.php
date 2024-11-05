@@ -3,12 +3,12 @@
 namespace Carboneio\SDK\Responses;
 
 /** Saloon Class */
-use Sammyjo20\Saloon\Http\SaloonResponse;
+use Saloon\Http\Response;
 
 /** Carbone Class */
 use Carboneio\SDK\Exceptions\CarboneSdkRequestException;
 
-class CarboneSdkResponse extends SaloonResponse
+class CarboneSdkResponse extends Response
 {
     /**
      * Create an exception if a server or client error occurred.
