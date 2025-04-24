@@ -33,8 +33,8 @@ class RendersCollection
         return $this->connector->send(new DownloadReportRequest($renderId));
     }
 
-    public function renderAndDownload(string $templateId, array $data, array $additionalHeaders = []): CarboneSdkResponse
+    public function renderAndDownload(string $templateId, array $data): CarboneSdkResponse
     {
-        return $this->connector->send(new RenderAndDownloadReportRequest($templateId, $data, $additionalHeaders));
+        return $this->connector->send(new RenderAndDownloadReportRequest($templateId, $data));
     }
 }
