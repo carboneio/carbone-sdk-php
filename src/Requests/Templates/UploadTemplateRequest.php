@@ -21,7 +21,8 @@ class UploadTemplateRequest extends Request implements HasBody
     protected ?string $response = UploadTemplateResponse::class;
 
     public function __construct(
-        private string $templateAsBase64
+        private string $templateAsBase64,
+        private array $additionalHeaders = []
     ) {
     }
 
@@ -35,5 +36,10 @@ class UploadTemplateRequest extends Request implements HasBody
         return [
             'template' => $this->templateAsBase64,
         ];
+    }
+
+    protected function defaultHeaders(): array
+    {
+        return $this->additionalHeaders;
     }
 }

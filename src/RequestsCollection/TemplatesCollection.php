@@ -22,9 +22,9 @@ class TemplatesCollection
         $this->connector = $connector;
     }
 
-    public function upload(string $content): UploadTemplateResponse
+    public function upload(string $content, array $additionalHeaders = []): UploadTemplateResponse
     {
-        return $this->connector->send(new UploadTemplateRequest($content));
+        return $this->connector->send(new UploadTemplateRequest($content, $additionalHeaders));
     }
 
     public function delete(string $templateId): CarboneSdkResponse

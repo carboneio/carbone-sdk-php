@@ -23,9 +23,9 @@ class RendersCollection
         $this->connector = $connector;
     }
 
-    public function render(string $templateId, array $data): RenderReportResponse
+    public function render(string $templateId, array $data, array $additionalHeaders = []): RenderReportResponse
     {
-        return $this->connector->send(new RenderReportRequest($templateId, $data));
+        return $this->connector->send(new RenderReportRequest($templateId, $data, $additionalHeaders));
     }
 
     public function download(string $renderId): CarboneSdkResponse
@@ -33,8 +33,8 @@ class RendersCollection
         return $this->connector->send(new DownloadReportRequest($renderId));
     }
 
-    public function renderAndDownload(string $templateId, array $data): CarboneSdkResponse
+    public function renderAndDownload(string $templateId, array $data, array $additionalHeaders = []): CarboneSdkResponse
     {
-        return $this->connector->send(new RenderAndDownloadReportRequest($templateId, $data));
+        return $this->connector->send(new RenderAndDownloadReportRequest($templateId, $data, $additionalHeaders));
     }
 }

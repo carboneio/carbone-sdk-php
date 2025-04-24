@@ -22,7 +22,8 @@ class RenderReportRequest extends Request implements HasBody
 
     public function __construct(
         private string $templateId,
-        private array $data
+        private array $data,
+        private array $additionalHeaders = []
     ) {
     }
 
@@ -34,5 +35,10 @@ class RenderReportRequest extends Request implements HasBody
     public function defaultBody(): array
     {
         return $this->data;
+    }
+
+    protected function defaultHeaders(): array
+    {
+        return $this->additionalHeaders;
     }
 }

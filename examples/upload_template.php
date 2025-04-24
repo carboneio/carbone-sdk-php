@@ -20,3 +20,8 @@ echo 'Template ID ' . $response->getTemplateId();
  * - Delete the template
  * - Download the template
  */
+
+/** You can alternatively specify the conservation time for this template in seconds */
+$response = $carbone->templates()->upload($templateAsBase64, [
+    'carbone-template-delete-after' => 86400, // 86400s = 1 day
+]);

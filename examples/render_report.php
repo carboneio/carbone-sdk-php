@@ -36,3 +36,17 @@ if ($result['success'] == false) {
      */
     echo $response->getRenderId();
 }
+
+/** You can also specify custom headers for async render support via webhook */
+
+// use a simple webhook URL
+$response = $carbone->renders()->render($templateId, $data, [
+    'carbone-webhook-url' => 'https://my-server.com/webhook',
+]);
+
+// use a webhook URL with custom headers
+$response = $carbone->renders()->render($templateId, $data, [
+    'carbone-webhook-url' => 'https://my-server.com/webhook',
+    // this will be sent as `Authorization: my-token` in the webhook request
+    'carbone-webhook-header-authorization' => 'my-token',
+]);
