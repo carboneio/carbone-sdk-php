@@ -10,15 +10,12 @@ use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 
 /** Carbone SDK Class */
-use Carboneio\SDK\Responses\RenderReportResponse;
 
-class RenderReportRequest extends Request implements HasBody
+class RenderAndDownloadReportRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
     protected Method $method = Method::POST;
-
-    protected ?string $response = RenderReportResponse::class;
 
     public function __construct(
         private string $templateId,
@@ -34,5 +31,12 @@ class RenderReportRequest extends Request implements HasBody
     public function defaultBody(): array
     {
         return $this->data;
+    }
+
+    protected function defaultQuery(): array
+    {
+        return [
+            'download' => 'true',
+        ];
     }
 }

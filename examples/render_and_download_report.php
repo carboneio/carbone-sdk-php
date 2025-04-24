@@ -21,18 +21,16 @@ $data = [
   'convertTo' => 'pdf',
 ];
 
-/** Generate the document */
-$response = $carbone->renders()->render($templateId, $data);
-$result = $response->json();
-echo 'Request Status Code: ' . $response->status() . "\n";
+/** Generate the document and download it with the same request */
+$response = $carbone->renders()->renderAndDownload($templateId, $data);
 
-/** Handle errors */
-if ($result['success'] == false) {
-    echo 'Something went wrong: ' . $result['error'] . "\n";
+/** If the file is found: Save the contents of the file yourself on your filesystem */
+if ($response->status() !== 404) {
+    // To get the custom file name provided through the rendering option "reportName":
+    echo 'File name: ' . $response->header('content-disposition');
+    // Save file
+    file_put_contents('/my_super_doc.pdf', $response->body());
+    echo 'File saved! ✅';
 } else {
-    /**
-     * Success, save the render ID:
-     * The render ID is a unique id to download a the generate document
-     */
-    echo $response->getRenderId();
+    echo 'File not saved!';
 }

@@ -3,15 +3,16 @@
 namespace Carboneio\SDK\RequestsCollection;
 
 /** Requests */
-use Carboneio\SDK\Requests\Reports\RenderReportRequest;
-use Carboneio\SDK\Requests\Reports\DownloadReportRequest;
 
-/** Responses */
+use Saloon\Http\Connector;
 use Carboneio\SDK\Responses\CarboneSdkResponse;
 use Carboneio\SDK\Responses\RenderReportResponse;
 
-use Saloon\Repositories\RequestCollection;
-use Saloon\Http\Connector;
+/** Responses */
+use Carboneio\SDK\Requests\Reports\RenderReportRequest;
+use Carboneio\SDK\Requests\Reports\DownloadReportRequest;
+
+use Carboneio\SDK\Requests\Reports\RenderAndDownloadReportRequest;
 
 class RendersCollection
 {
@@ -31,5 +32,9 @@ class RendersCollection
     {
         return $this->connector->send(new DownloadReportRequest($renderId));
     }
-}
 
+    public function renderAndDownload(string $templateId, array $data): CarboneSdkResponse
+    {
+        return $this->connector->send(new RenderAndDownloadReportRequest($templateId, $data));
+    }
+}

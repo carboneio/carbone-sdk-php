@@ -1,6 +1,7 @@
 <?php
 
-function getTemplate() : string {
+function getTemplate(): string
+{
     return file_get_contents(__DIR__ . '/Assets/template.odt');
 }
 

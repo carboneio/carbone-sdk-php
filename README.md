@@ -63,6 +63,24 @@ $content = $response->getContent();
 ```
 Example to [download a rendered document](./examples/download_report.php)
 
+### Render and directly download a rendered template
+
+You can render and download a render in the same request using the `renderAndDownload` method. This method takes the `template ID`  and render data as parameters.
+
+```php
+$templateId = "your_template_id";
+$data = [
+  'name' => 'John Doe',
+  'age' => 30,
+];
+
+$response = $carbone->renders()->renderAndDownload($templateId, $data);
+
+// Save the contents of the file yourself on your filesystem
+$content = $response->getContent();
+```
+Example to [render and download a document](./examples/render_and_download_report.php)
+
 ### Delete a template
 
 You can delete a template using the `delete` method. This method takes the `template Id` as a parameter.

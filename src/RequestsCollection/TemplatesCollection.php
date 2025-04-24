@@ -3,16 +3,15 @@
 namespace Carboneio\SDK\RequestsCollection;
 
 /** Requests */
-use Carboneio\SDK\Requests\Templates\DeleteTemplateRequest;
-use Carboneio\SDK\Requests\Templates\DownloadTemplateRequest;
-use Carboneio\SDK\Requests\Templates\UploadTemplateRequest;
-
-/** Responses */
+use Saloon\Http\Connector;
 use Carboneio\SDK\Responses\CarboneSdkResponse;
 use Carboneio\SDK\Responses\UploadTemplateResponse;
 
-use Saloon\Repositories\RequestCollection;
-use Saloon\Http\Connector;
+/** Responses */
+use Carboneio\SDK\Requests\Templates\DeleteTemplateRequest;
+use Carboneio\SDK\Requests\Templates\UploadTemplateRequest;
+
+use Carboneio\SDK\Requests\Templates\DownloadTemplateRequest;
 
 class TemplatesCollection
 {

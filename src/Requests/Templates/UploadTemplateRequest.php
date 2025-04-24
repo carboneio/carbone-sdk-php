@@ -3,11 +3,11 @@
 namespace Carboneio\SDK\Requests\Templates;
 
 /** Saloon Class */
+use Saloon\Enums\Method;
+use Saloon\Http\Request;
 use Saloon\Constants\Saloon;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
-use Saloon\Http\Request;
-use Saloon\Enums\Method;
 
 /** Carbone SDK Class */
 use Carboneio\SDK\Responses\UploadTemplateResponse;
