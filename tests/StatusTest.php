@@ -1,28 +1,28 @@
 <?php
 
 /** Saloon Class */
-use Saloon\Http\Faking\MockClient;
-use Saloon\Http\Faking\MockResponse;
-
 use Carboneio\SDK\Carbone;
+use Saloon\Http\Faking\MockClient;
+
+use Saloon\Http\Faking\MockResponse;
 use Carboneio\SDK\Requests\StatusRequest;
 
 beforeEach(function () {
-    $this->token = "jwt_carbone_token";
+    $this->token = 'jwt_carbone_token';
     $this->carbone = new Carbone($this->token);
 });
 
 it('Should return the status 200 of the API', function () {
 
-    $expectedResponse =  [
-        "success" => true,
-        "code"    => 200,
-        "message" => "OK",
-        "version" => "4.6.7"
+    $expectedResponse = [
+        'success' => true,
+        'code' => 200,
+        'message' => 'OK',
+        'version' => '4.6.7',
     ];
 
     $mockClient = new MockClient([
-        StatusRequest::class => MockResponse::make($expectedResponse, 200)
+        StatusRequest::class => MockResponse::make($expectedResponse, 200),
     ]);
 
     $this->carbone->withMockClient($mockClient);
@@ -38,15 +38,15 @@ it('Should return the status 200 of the API', function () {
 
 it('Should return the status 500 of the API', function () {
 
-    $expectedResponse =  [
-        "success" => false,
-        "code"    => 500,
-        "message" => "/",
-        "version" => "4.6.7"
+    $expectedResponse = [
+        'success' => false,
+        'code' => 500,
+        'message' => '/',
+        'version' => '4.6.7',
     ];
 
     $mockClient = new MockClient([
-        StatusRequest::class => MockResponse::make($expectedResponse, 500)
+        StatusRequest::class => MockResponse::make($expectedResponse, 500),
     ]);
 
     $this->carbone->withMockClient($mockClient);

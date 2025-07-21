@@ -3,19 +3,19 @@
 namespace Carboneio\SDK;
 
 /** Carboneio SDK Class */
-use Carboneio\SDK\Responses\CarboneSdkResponse;
+use Saloon\Http\Response;
 
 /** Carbone SDK Collections */
-use Carboneio\SDK\RequestsCollection\RendersCollection;
-use Carboneio\SDK\RequestsCollection\TemplatesCollection;
-use Carboneio\SDK\Requests\StatusRequest;
+use Saloon\Http\Connector;
+use Saloon\Contracts\Authenticator;
+use Saloon\Traits\Plugins\AcceptsJson;
 
 /** Saloon Class */
-use Saloon\Http\Connector;
-use Saloon\Traits\Plugins\AcceptsJson;
 use Saloon\Http\Auth\TokenAuthenticator;
-use Saloon\Http\Response;
-use Saloon\Contracts\Authenticator;
+use Carboneio\SDK\Requests\StatusRequest;
+use Carboneio\SDK\Responses\CarboneSdkResponse;
+use Carboneio\SDK\RequestsCollection\RendersCollection;
+use Carboneio\SDK\RequestsCollection\TemplatesCollection;
 
 class Carbone extends Connector
 {
@@ -42,7 +42,7 @@ class Carbone extends Connector
      */
     protected array $requests = [
         'templates' => TemplatesCollection::class,
-        'renders' => RendersCollection::class
+        'renders' => RendersCollection::class,
     ];
 
     /**
@@ -91,7 +91,7 @@ class Carbone extends Connector
     public function defaultConfig(): array
     {
         return [
-            'timeout' => 30
+            'timeout' => 30,
         ];
     }
 

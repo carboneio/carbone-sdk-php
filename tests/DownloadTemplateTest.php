@@ -2,20 +2,20 @@
 
 
 /** Saloon Class */
-use Saloon\Http\Faking\MockClient;
-use Saloon\Http\Faking\MockResponse;
-
 use Carboneio\SDK\Carbone;
+use Saloon\Http\Faking\MockClient;
+
+use Saloon\Http\Faking\MockResponse;
 use Carboneio\SDK\Requests\Templates\DownloadTemplateRequest;
 
 beforeEach(function () {
-    $this->token = "jwt_carbone_token";
+    $this->token = 'jwt_carbone_token';
     $this->carbone = new Carbone($this->token);
 });
 
 it('should download a template', function () {
 
-    $templateId = "afc1879ed3a2dbedac30e5f873d9fdb0cc13528974a7f8ec946ceaf2fbd8fdc9";
+    $templateId = 'afc1879ed3a2dbedac30e5f873d9fdb0cc13528974a7f8ec946ceaf2fbd8fdc9';
     $templateContent = getTemplate();
 
     $mockClient = new MockClient([
@@ -35,11 +35,11 @@ it('should download a template', function () {
 
 it('should return an error if the template does not exist', function () {
 
-    $templateId = "afc1879ed3a2dbedac30e5f873d9fdb0cc13528974a7f8ec946ceaf2fbd8fdc9";
+    $templateId = 'afc1879ed3a2dbedac30e5f873d9fdb0cc13528974a7f8ec946ceaf2fbd8fdc9';
     $expectedResponse = [
-        "success" => false,
-        "data"    => "Cannot read template",
-        "code"    => "w116"
+        'success' => false,
+        'data' => 'Cannot read template',
+        'code' => 'w116',
     ];
 
     $mockClient = new MockClient([

@@ -38,6 +38,18 @@ $response = $carbone->templates()->upload($contentBase64);
 $templateId = $response->getTemplateId();
 ```
 
+You can also specify the conservation time for this template. By default, the template will not be deleted in production (30 days in test mode). You can set the conservation time in seconds using the `carbone-template-delete-after` header like this :
+
+```php
+$response = $carbone->templates()->upload($contentBase64, [
+    'carbone-template-delete-after' => 86400, // 86400s = 1 day
+]);
+
+$templateId = $response->getTemplateId();
+```
+
+> See [Carbone API documentation](https://carbone.io/documentation/developer/http-api/introduction.html#template-storage) for more information about template storage.
+
 Example to [upload a template](./examples/upload_template.php)
 
 ### Render a template
@@ -49,19 +61,49 @@ $response = $carbone->renders()->render($templateId, $data);
 
 $renderId = $response->getRenderId();
 ```
-Example to [render a template](./examples/render_report.php)
 
-### Download a rendered template
+In case of asynchronous rendering process, you can specify a webhook URL to be notified when the rendering is finished.
+The webhook URL will receive a POST request with the `success`  and the `render ID` in the body.
 
-You can download a rendered template using the `download` method. This method takes the `render ID` as a parameter.
+You can also specify custom headers for the webhook request, like authentication, using the `carbone-webhook-header-X` header. The `X` can be replaced by any custom header name.
 
 ```php
-$response = $carbone->renders()->download($renderId);
+// use a simple webhook URL
+$response = $carbone->renders()->render($templateId, $data, [
+    'carbone-webhook-url' => 'https://my-server.com/webhook',
+]);
+
+// use a webhook URL with custom headers
+$response = $carbone->renders()->render($templateId, $data, [
+    'carbone-webhook-url' => 'https://my-server.com/webhook',
+    // this will be sent as `Authorization: my-token` in the webhook request
+    'carbone-webhook-header-authorization' => 'my-token',
+]);
+
+$renderId = $response->getRenderId();
+```
+
+> See [Carbone API documentation](https://carbone.io/documentation/developer/http-api/introduction.html#api-webhook) for more information about webhooks.
+
+Example to [download a rendered document](./examples/download_report.php)
+
+### Render and directly download a rendered template
+
+You can render and download a render in the same request using the `renderAndDownload` method. This method takes the `template ID`  and render data as parameters.
+
+```php
+$templateId = "your_template_id";
+$data = [
+  'name' => 'John Doe',
+  'age' => 30,
+];
+
+$response = $carbone->renders()->renderAndDownload($templateId, $data);
 
 // Save the contents of the file yourself on your filesystem
 $content = $response->getContent();
 ```
-Example to [download a rendered document](./examples/download_report.php)
+Example to [render and download a document](./examples/render_and_download_report.php)
 
 ### Delete a template
 
@@ -94,6 +136,9 @@ $carbone->headers()->set([
   // "carbone-webhook-url" => "https://my-server", // https://carbone.io/api-reference.html#api-webhook
 ]);
 ```
+
+> **Note:** custom headers applied this way will affect all requests made by this instance of the Carbone class. If you want to set custom headers for a specific request, you can do it by passing the headers as an array in `Upload a template` and `Render a template
+` requests. 
 
 ### Get API Status
 
