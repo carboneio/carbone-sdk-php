@@ -87,7 +87,7 @@ Example to [download a template](./examples/download_template.php)
 Set custom headers, such as "carbone-version" to select a specific [Carbone version](https://carbone.io/api-reference.html#api-version). By default, the SDK request the version 4 of Carbone.
 
 ```php
-$carbone->setHeaders([
+$carbone->headers()->set([
   "carbone-version" => 4,
   /** Uncomment to delete automatically templates after a specific time */
   // "carbone-template-delete-after" => 86400, // 86400s = 1 day | https://carbone.io/api-reference.html#template-storage
