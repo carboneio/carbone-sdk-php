@@ -58,7 +58,7 @@ class Carbone extends Connector
     /**
      * @param string|null $baseUrl
      */
-    public function __construct(private string $token, string $baseUrl = null)
+    public function __construct(private string $token, ?string $baseUrl = null)
     {
         if (isset($baseUrl)) {
             $this->apiBaseUrl = $baseUrl;
