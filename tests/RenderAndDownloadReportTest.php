@@ -1,27 +1,23 @@
 <?php
 
 /** Saloon Class */
+
 use Carboneio\SDK\Carbone;
 use Saloon\Http\Faking\MockClient;
 
 use Saloon\Http\Faking\MockResponse;
-use Carboneio\SDK\Requests\Reports\RenderReportRequest;
+use \Carboneio\SDK\Requests\Reports\RenderAndDownloadReportRequest;
 
 beforeEach(function () {
     $this->token = 'jwt_carbone_token';
     $this->carbone = new Carbone($this->token);
 });
 
-it('Should render a report from a template ID and should return a render ID', function () {
+it('Should render a report from a template ID and should return the rendered report', function () {
 
     $templateId = 'afc1879ed3a2dbedac30e5f873d9fdb0cc13528974a7f8ec946ceaf2fbd8fdc9';
-    $renderId = 'MTAuMjAuMjEuNDEgICAgOpJ9Qgp6OEl5Ea5ACsPjMAcmVwb3J0.docx';
-    $expectedResponse = [
-        'success' => true,
-        'data' => [
-          'renderId' => $renderId,
-        ],
-    ];
+    $resultContent = getResult();
+
     $bodyRequest = [
         'data' => [
             'firstname' => 'John',
@@ -30,19 +26,21 @@ it('Should render a report from a template ID and should return a render ID', fu
     ];
 
     $mockClient = new MockClient([
-        RenderReportRequest::class => MockResponse::make($expectedResponse, 200),
+        RenderAndDownloadReportRequest::class => MockResponse::make($resultContent, 200),
     ]);
 
     $this->carbone->withMockClient($mockClient);
 
-    $response = $this->carbone->renders()->render($templateId, $bodyRequest);
-    $json = $response->json();
-    expect($response->getRenderId())->toBe($renderId);
-    $this->assertEquals($json, $expectedResponse);
-    expect($response->status())->toBe(200);
+    $response = $this->carbone->renders()->renderAndDownload($templateId, $bodyRequest);
+
+    expect($response->body())
+        ->toBe($resultContent)
+        ->and($response->status())
+        ->toBe(200);
 
     $mockClient->assertSent('/render/*');
-    $mockClient->assertSent(RenderReportRequest::class);
+    $mockClient->assertSent(RenderAndDownloadReportRequest::class);
+
 });
 
 it('Should return an error 404 if the template if not found', function () {
@@ -62,19 +60,20 @@ it('Should return an error 404 if the template if not found', function () {
     ];
 
     $mockClient = new MockClient([
-        RenderReportRequest::class => MockResponse::make($expectedResponse, 404),
+        RenderAndDownloadReportRequest::class => MockResponse::make($expectedResponse, 404),
     ]);
 
     $this->carbone->withMockClient($mockClient);
 
-    $response = $this->carbone->renders()->render($templateId, $bodyRequest);
+    $response = $this->carbone->renders()->renderAndDownload($templateId, $bodyRequest);
+    expect($response->status())->toBe(404);
+
     $json = $response->json();
 
     $this->assertEquals($json, $expectedResponse);
-    expect($response->status())->toBe(404);
 
     $mockClient->assertSent('/render/*');
-    $mockClient->assertSent(RenderReportRequest::class);
+    $mockClient->assertSent(RenderAndDownloadReportRequest::class);
 });
 
 
@@ -95,17 +94,17 @@ it('Should return an error if the template design is not correct', function () {
     ];
 
     $mockClient = new MockClient([
-        RenderReportRequest::class => MockResponse::make($expectedResponse, 404),
+        RenderAndDownloadReportRequest::class => MockResponse::make($expectedResponse, 404),
     ]);
 
     $this->carbone->withMockClient($mockClient);
 
-    $response = $this->carbone->renders()->render($templateId, $bodyRequest);
-    $json = $response->json();
-
-    $this->assertEquals($json, $expectedResponse);
+    $response = $this->carbone->renders()->renderAndDownload($templateId, $bodyRequest);
     expect($response->status())->toBe(404);
 
+    $json = $response->json();
+    $this->assertEquals($json, $expectedResponse);
+
     $mockClient->assertSent('/render/*');
-    $mockClient->assertSent(RenderReportRequest::class);
+    $mockClient->assertSent(RenderAndDownloadReportRequest::class);
 });
