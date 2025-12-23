@@ -1,3 +1,7 @@
+### v2.0.1
+  - Release December 24th, 2025
+  - Minor fixes for PHP 8.4
+
 ### v2.0.0
   - Release November 4th, 2024
   - Update all dependencies + PHP >= v8.2

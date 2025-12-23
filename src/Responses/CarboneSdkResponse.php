@@ -13,14 +13,16 @@ class CarboneSdkResponse extends Response
     /**
      * Create an exception if a server or client error occurred.
      *
-     * @return CarboneSdkRequestException
+     * @return CarboneSdkRequestException|null
      */
-    public function toException(): CarboneSdkRequestException
+    public function toException(): ?CarboneSdkRequestException
     {
         if ($this->failed()) {
             $body = $this->response?->getBody()?->getContents();
 
             return new CarboneSdkRequestException($this, $body, 0, $this->getGuzzleException());
         }
+
+        return null;
     }
 }
