@@ -18,9 +18,9 @@ class CarboneSdkResponse extends Response
     public function toException(): ?CarboneSdkRequestException
     {
         if ($this->failed()) {
-            $body = $this->response?->getBody()?->getContents();
+            $body = $this->body();
 
-            return new CarboneSdkRequestException($this, $body, 0, $this->getGuzzleException());
+            return new CarboneSdkRequestException($this, $body, 0, $this->getSenderException());
         }
 
         return null;

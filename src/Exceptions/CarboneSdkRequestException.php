@@ -14,6 +14,6 @@ class CarboneSdkRequestException extends RequestException
      */
     public function getResponse(): Response
     {
-        return $this->getSaloonResponse();
+        return parent::getResponse();
     }
 }

@@ -1,3 +1,10 @@
+### v2.1.0
+  - Release March 29th, 2026
+  - Upgrade Saloon to v4
+  - Fix `CarboneSdkResponse::toException()` using non-existent `$response` property and `getGuzzleException()` method (fixes issue #10)
+  - Fix `CarboneSdkRequestException::getResponse()` calling non-existent `getSaloonResponse()` method
+  - Add unit tests for exception handling
+
 ### v2.0.1
   - Release December 24th, 2025
   - Minor fixes for PHP 8.4
