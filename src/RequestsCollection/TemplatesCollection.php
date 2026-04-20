@@ -3,16 +3,15 @@
 namespace Carboneio\SDK\RequestsCollection;
 
 /** Requests */
-use Carboneio\SDK\Requests\Templates\DeleteTemplateRequest;
-use Carboneio\SDK\Requests\Templates\DownloadTemplateRequest;
-use Carboneio\SDK\Requests\Templates\UploadTemplateRequest;
-
-/** Responses */
+use Saloon\Http\Connector;
 use Carboneio\SDK\Responses\CarboneSdkResponse;
 use Carboneio\SDK\Responses\UploadTemplateResponse;
 
-use Saloon\Repositories\RequestCollection;
-use Saloon\Http\Connector;
+/** Responses */
+use Carboneio\SDK\Requests\Templates\DeleteTemplateRequest;
+use Carboneio\SDK\Requests\Templates\UploadTemplateRequest;
+
+use Carboneio\SDK\Requests\Templates\DownloadTemplateRequest;
 
 class TemplatesCollection
 {
@@ -23,9 +22,9 @@ class TemplatesCollection
         $this->connector = $connector;
     }
 
-    public function upload(string $content): UploadTemplateResponse
+    public function upload(string $content, array $additionalHeaders = []): UploadTemplateResponse
     {
-        return $this->connector->send(new UploadTemplateRequest($content));
+        return $this->connector->send(new UploadTemplateRequest($content, $additionalHeaders));
     }
 
     public function delete(string $templateId): CarboneSdkResponse

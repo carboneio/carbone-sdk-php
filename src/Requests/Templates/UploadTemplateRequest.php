@@ -3,11 +3,11 @@
 namespace Carboneio\SDK\Requests\Templates;
 
 /** Saloon Class */
+use Saloon\Enums\Method;
+use Saloon\Http\Request;
 use Saloon\Constants\Saloon;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
-use Saloon\Http\Request;
-use Saloon\Enums\Method;
 
 /** Carbone SDK Class */
 use Carboneio\SDK\Responses\UploadTemplateResponse;
@@ -21,7 +21,8 @@ class UploadTemplateRequest extends Request implements HasBody
     protected ?string $response = UploadTemplateResponse::class;
 
     public function __construct(
-        private string $templateAsBase64
+        private string $templateAsBase64,
+        private array $additionalHeaders = []
     ) {
     }
 
@@ -35,5 +36,10 @@ class UploadTemplateRequest extends Request implements HasBody
         return [
             'template' => $this->templateAsBase64,
         ];
+    }
+
+    protected function defaultHeaders(): array
+    {
+        return $this->additionalHeaders;
     }
 }
